@@ -11,9 +11,11 @@ RUN apt-get update \
         apt-transport-https \
         build-essential \
         git \
+        graphviz \
         less \
         minimap2 \
         samtools \
+        shellcheck \
         texlive-latex-extra \
         texlive-latex-recommended \
         unzip \
@@ -30,7 +32,7 @@ RUN apt-get update \
 # Install directly into 'base' conda environment
 COPY laava.conda_env.yml ./conda_env.yml
 RUN conda env update -v -n base -f conda_env.yml
-RUN conda install awscli=2.24.2 graphviz nextflow shellcheck
+RUN conda install -n base conda-forge::awscli=2.24.2 bioconda::nextflow
 
 WORKDIR /data/
 
